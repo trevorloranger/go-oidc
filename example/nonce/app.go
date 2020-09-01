@@ -18,6 +18,7 @@ import (
 var (
 	clientID     = os.Getenv("GOOGLE_OAUTH2_CLIENT_ID")
 	clientSecret = os.Getenv("GOOGLE_OAUTH2_CLIENT_SECRET")
+	issuerURL    = os.Getenv("GOOGLE_OIDC_ISSUER_URL")
 )
 
 const appNonce = "a super secret nonce"
@@ -25,7 +26,7 @@ const appNonce = "a super secret nonce"
 func main() {
 	ctx := context.Background()
 
-	provider, err := oidc.NewProvider(ctx, "https://accounts.google.com")
+	provider, err := oidc.NewProvider(ctx, issuerURL)
 	if err != nil {
 		log.Fatal(err)
 	}
